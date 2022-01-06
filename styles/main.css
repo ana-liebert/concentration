@@ -1,0 +1,53 @@
+body {
+    
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    background-image: url('../images/spacebackground.jpeg');
+    background-size: cover;
+    color: white;
+}
+
+h1 {
+    font-size: 55px;
+    margin: 10px;
+}
+
+.container {
+    width: 900px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: repeat(6, 2fr);
+    grid-template-rows: repeat(auto-fill, minmax(240px, 280px));
+    gap: 2px 2px;
+    grid-auto-flow: column;
+   
+    
+}
+
+.card {
+    border: solid;
+    font-size: 100px;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../images/spacecard.jpeg');
+}
+
+#timer, .winMessage {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-shrink: inherit;
+    
+}
