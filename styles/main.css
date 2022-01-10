@@ -11,8 +11,8 @@ body {
 }
 
 h1 {
-    font-size: 55px;
-    margin: 10px;
+    font-size: 45px;
+    margin: 5px;
 }
 
 .container {
@@ -23,9 +23,28 @@ h1 {
     grid-template-rows: repeat(3, 1fr);
     grid-gap: 8px;
     grid-auto-flow: column;
-    margin: 15px;
+    margin: 10px;
 }
 
+.container.levelUp {
+    margin-right: 500px;
+}
+
+.container2.levelUp {
+    width: 480px;
+    height: 480px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 8px;
+    grid-auto-flow: column;
+    margin: 10px;
+    justify-content: right;
+    align-content: right;
+    position: absolute;
+    margin-top: 240px;
+    margin-left: 500px;
+}
 
 
 
@@ -79,7 +98,7 @@ h1 {
     font-family: 'Lato', sans-serif;
     width: 100px;
     height: 40px;
-    margin: 15px;
+    margin: 10px;
     display: inline-block;
     vertical-align: top;
 }
