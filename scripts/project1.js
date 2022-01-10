@@ -44,7 +44,7 @@ function displayImage() {
 
   this.classList.add('flip');
   totalClicks ++
-  console.log(totalClicks);
+  
   
     if (countClicks == 0) {
         countClicks = 1
@@ -53,10 +53,10 @@ function displayImage() {
     else {
       countClicks = 0
       choiceTwo = this;
-    console.log(choiceOne.dataset.name, choiceTwo.dataset.name)
+    
          
     
-        if (choiceOne.dataset.name == choiceTwo.dataset.name) {
+        if (choiceOne.dataset.name == choiceTwo.dataset.name && choiceOne !== choiceTwo) {
             isMatch ++
             sumArray.push(totalClicks);
             choiceOne.removeEventListener('click', displayImage, false);
