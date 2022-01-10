@@ -1,154 +1,118 @@
-let choices = ["A", "A", "B", "B", "C", "C", "D", "D", "E", "E", "F", "F"]
-let randIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-let randomIndex = []
-let shuffledArray = []
-let $card = $('.card')
-let cards = [...$card];
+let cards = document.querySelectorAll('.card');
+let choiceOne = '';
+let choiceTwo = '';
+let countClicks = 0;
 let seconds = 0;
-let minutes = 0;
-let hours = 0;
-let interval = null;
-let countClicks = 0
-let choiceOne = ''
-let choiceTwo = ''
-let choiceOneIndex = ''
-let choiceTwoIndex = ''
-let isMatch = 0
-let totalClicks = 0
-let $images = $('.image');
-let imageChoice = ['images/alien1.png', 'images/alien1.png', 'images/alien2.png', 'images/alien2.png', 'images/alien3.png', 'images/alien3.png', 'images/alien4.png', 'images/alien4.png', 'images/alien5.png', 'images/alien5.png', 'images/alien6.png', 'images/alien6.png'];
-let sortedImages = []
+let isMatch = 0;
+let totalClicks = 0;
+let sumArray = [];
+let container = document.querySelector('.container');
+let container2 = document.querySelector('.container2');
+let $button = $('#duplicate');
+let button = document.getElementById('#duplicate');
+let $levelMessage = $('#level');
+let $nextLevel = $('.container2');
+
+
+$nextLevel.hide();
+$('.timerContainer').hide();
+
+
+// Shuffles cards ------->
 
 
 
-$('.timerContainer').hide()
-
-imageChoice.sort (function(a, b) {
-    return 0.5 - Math.random()});
-//console.log(imageChoice); 
-
-let imageArray = document.querySelectorAll('.image');
-
-function shuffleInImage() {
-    for(let i = 0; i < cards.length; i ++) {
-    let img = document.createElement('img');
-    //console.log(imageChoice[i]);
-    img.src = imageChoice[i];
-    img.width = "15px";
-    img.height = "15px";
-    img.style.margin = "15px";
-    // console.log(img.src); normal, THIS IS TWELEVE SRCS
-    //console.log(i); //normal, index of 11
-    // console.log(imageArray); //normal, array of 12 divs
-    //console.log(imageArray[i]); //doesnt assign to all divs- why??
-    imageArray[i].innerHTML=(`<img src="${img.src}">`);
-    $images.hide();
-    //console.log(imageArray[i].innerHTML);
-} 
+for (let i = 0; i <= 12; i++) {
+    container.appendChild(container.children[Math.floor(Math.random() * i)]);
 }
 
-shuffleInImage();
+// Reset button --------->
+$(document).on('click', '#button', function() {
+    window.location.reload(true);
+  })
 
-
-function stopWatch() {
+// Timer ------------>
+function timer() {
     seconds ++;
-    if (seconds / 60 === 1) {
-        seconds = 0;
-        minutes ++;
-        if( minutes / 60 === 1) {
-            minutes = 0;
-            hours ++;
-        }
-        // if(seconds < 10 || minutes < 10 || hours < 10) {
-        // $('#timer').text(`0${hours}:0${minutes}:0${seconds}`);
-        // } else if (seconds > 10 || minutes > 10 || hours > 10) {
-        //     $('#timer').text(`${hours}:${minutes}:${seconds}`);
-        // }
-    } $('#timer').text(`${hours}:${minutes}:${seconds}`);
+    $('#timer').text(`${seconds}`);
 }
 
-interval = window.setInterval(stopWatch, 1000);
+interval = window.setInterval(timer, 1000);
 
-//window.addEventListener('load', shuffleInImage());
+// Show images and check for match ------->
+function displayImage() {
 
-setInterval(displayCard(), 2000);
-
-for (let i = 0; i < cards.length; i++) {
-    cards[i].addEventListener('click', function displayCard(event) {
-        target = $(event.target); 
-        target.children().show()
-        countClicks ++
-        totalClicks = totalClicks + 1
-        $('.tally').append(totalClicks);
-        
-
-        if (countClicks == 1) {
-            choiceOne = target.children().html();
-            choiceOneIndex = i;
-            target.children().show()
-           // console.log(countClicks);
-        } else {
-            choiceTwo = target.children().html();
-            choiceTwoIndex = i; //NOTE FOR FUTURE REFERENCE - AN ARRAY CANNOT EQUAL AN ARRAY- [i] WAS COMPARING TWO ARRAYS AND NOT GRABBING THE ACTUAL NUMBER
-            countClicks = 0;
-            target.children().show()
-           // console.log(countClicks);
-
-        }
-
-        console.log(choiceOne);
-        console.log(choiceTwo);
-        console.log(choiceOneIndex, choiceTwoIndex);
+  this.classList.add('flip');
+  totalClicks ++
+  console.log(totalClicks);
+  
+    if (countClicks == 0) {
+        countClicks = 1
+        choiceOne = this;
+  } 
+    else {
+      countClicks = 0
+      choiceTwo = this;
+    console.log(choiceOne.dataset.name, choiceTwo.dataset.name)
+         
     
-        if ( (choiceOne == choiceTwo || choiceTwo == choiceOne) && (choiceOneIndex !== choiceTwoIndex && choiceTwoIndex !== choiceOneIndex) ) {
+        if (choiceOne.dataset.name == choiceTwo.dataset.name) {
+            isMatch ++
+            sumArray.push(totalClicks);
+            choiceOne.removeEventListener('click', displayImage, false);
+            choiceOne.removeEventListener('click', displayImage, false);
            
-                isMatch ++
-                event.target.removeEventListener("click", displayCard, false);
-                    
+
+            if (isMatch == 6) {
+                    window.clearInterval(interval);
+                    $('.timerContainer').slideDown();
+                    document.getElementById("clicksToWin").innerHTML = "clicks to beat level one."
+                    document.getElementById("containerTwo").style.marginTop = "309px";
+                    sumClicks = sumArray.slice(-1)
+                    $('#clickTally').append(totalClicks); 
+                }
+
                 if (isMatch == 12) {
-                        alert('Finished!')
-                        window.clearInterval(interval);
-                        $('.timerContainer').show()
-                    }
-            } 
-    
-        else {
-            target.children().fadeOut()
+                
+                window.clearInterval(interval);
+                document.getElementById("clicksToWin").innerHTML = "clicks to beat level two."
+                    sumClicks = sumArray.slice(-1)
+                    $('#clickTally').text(totalClicks); 
+                    
+            }
+            } else{
+            setTimeout(() => {
+                choiceOne.classList.remove('flip');
+                choiceTwo.classList.remove('flip');
+            }, 600)
         }
-    } )
+    }
+}
+
+cards.forEach(card => card.addEventListener('click', displayImage));
+
+
+// Level up --------------->
+
+$button.on('click', duplicate);
+
+
+function duplicate() {
+    
+    $nextLevel.show();
+    $levelMessage.text('Level 2');
+    container.classList.add('levelUp');
+    container2.classList.add('levelUp');
+    
+
+    for (let i = 0; i <= 12; i++) {
+
+                container.appendChild(container2.children[Math.floor(Math.random() * i)]);
+                container2.appendChild(container.children[Math.floor(Math.random() * i)]);
+    }
+
+
 }
 
 
 
-
-
-// function shuffle() {
-//     for (let index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 
-//         i = (index.length - 1); i--; ) {
-//             let random = index.splice(Math.floor(Math.random() * (i + 1)), 1)[0];
-//             randomIndex.push(random)
-//         } 
-//         for (let i = 0; i < randomIndex.length; i++) {
-//             options = randomIndex[i] 
-//             value = choices[options] 
-//             shuffledArray.push(value) 
-//         }
-     
-//         $('#one').text(shuffledArray[0])
-//         $('#two').text(shuffledArray[1]);
-//         $('#three').text(shuffledArray[2]);
-//         $('#four').text(shuffledArray[3]);
-//         $('#five').text(shuffledArray[4]);
-//         $('#six').text(shuffledArray[5]);
-//         $('#seven').text(shuffledArray[6]);
-//         $('#eight').text(shuffledArray[7]);
-//         $('#nine').text(shuffledArray[8]);
-//         $('#ten').text(shuffledArray[9]);
-//         $('#eleven').text(shuffledArray[10]);
-//         $('#twelve').text(shuffledArray[11]);
-
-    
-//         $('.text').hide()
-//         //$images.hide();
-//         //console.log(shuffledArray)
-//         }

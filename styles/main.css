@@ -1,5 +1,4 @@
 body {
-    
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -12,21 +11,43 @@ body {
 }
 
 h1 {
-    font-size: 55px;
-    margin: 10px;
+    font-size: 45px;
+    margin: 5px;
 }
 
 .container {
-    width: 900px;
-    height: 600px;
+    width: 480px;
+    height: 480px;
     display: grid;
-    grid-template-columns: repeat(6, 2fr);
-    grid-template-rows: repeat(auto-fill, minmax(240px, 280px));
-    gap: 2px 2px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 8px;
     grid-auto-flow: column;
-   
-    
+    margin: 10px;
 }
+
+.container.levelUp {
+    margin-right: 500px;
+}
+
+.container2.levelUp {
+    width: 480px;
+    height: 480px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 8px;
+    grid-auto-flow: column;
+    margin: 10px;
+    justify-content: right;
+    align-content: right;
+    position: absolute;
+    margin-top: 240px;
+    margin-left: 500px;
+}
+
+
+
 
 .card {
     border: solid;
@@ -35,8 +56,16 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('../images/spacecard.jpeg');
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform .3s;
 }
+
+.card.flip {
+    transform: rotateY(180deg);
+    transition: transform .5s;
+  }
+
 
 #timer, .winMessage {
     width: 100%;
@@ -44,10 +73,32 @@ h1 {
     font-size: 20px;
 }
 
-.image {
+.frontImage {
     width: 100px;
     height: 100px;
     display: flex;
     flex-shrink: inherit;
-    
+    position: absolute;
+    transform: rotateY(180deg);
+}
+.backImage {
+    width: 112px;
+    height: 150px;
+    border-radius: 35px;
+    display: flex;
+    flex-shrink: inherit;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+
+#button, #duplicate {
+    background: white;
+    border-radius: 35px;
+    font-family: 'Lato', sans-serif;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
 }

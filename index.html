@@ -14,114 +14,144 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Poiret+One&display=swap');
         </style>
+    <header>
     <h1 class="header"></h1>
     <h1>CONCENTRATION</h1>
-    <h2>Begin the game by selecting two pairs. Find all pairs of the cards in 30 seconds.</h2>
-    <button class='button'>Reset</button>
-    <div class="tally">Click Tally: </div>
+    <h2>Find all the matches in the deck!</h2>
+    <h2 id="level"></h2>
     <div class="timerContainer">
-        <h3 class="winMessage">Your time to complete was <span id="timer">00:00:00</span>
+        <h3 class="winMessage">It took you <span id="timer"></span> seconds and <span id="clickTally"></span> <span id="clicksToWin">clicks to win.</span>
             <br>
-            Reset the game to play again and beat your time!
+            Reset the game to play again to beat your score!
         </h3>
     </div>
-<!-- 
-    <section class="container">
-        <div class="card" id="card1">
-            <img class ="image" src="images/alien1.png">
-            <span class="text" id="one">A</span>
-        </div>
-        <div class="card" id="card2">
-            <img class ="image" src="images/alien1.png">
-            <span class="text" id="two">A</span>
-        </div>
-        <div class="card" id="card3">
-            <img class ="image" src="images/alien2.png">
-            <span class="text" id="three">B</span>
-        </div>
-        <div class="card" id="card4">
-            <img class ="image" src="images/alien2.png">
-            <span class="text" id="four">B</span>
-        </div>
-        <div class="card" id="card5">
-            <img class ="image" src="images/alien3.png">
-            <span class="text" id="five">C</span>
-        </div>
-        <div class="card" id="card6">
-            <img class ="image" src="images/alien3.png">
-            <span class="text" id="six">C</span>
-        </div>
-        <div class="card" id="card7">
-            <img class ="image" src="images/alien4.png">
-            <span class="text" id="seven">D</span>
-        </div>
-        <div class="card" id="card8">
-            <img class ="image" src="images/alien4.png">
-            <span class="text" id="eight">D</span>
-        </div>
-        <div class="card" id="card9">
-            <img class ="image" src="images/alien5.png">
-            <span class="text" id="nine">E</span>
-        </div>
-        <div class="card" id="card10">
-            <img class ="image" src="images/alien5.png">
-            <span class="text" id="ten">E</span>
-        </div>
-        <div class="card" id="card11">
-            <img class ="image" src="images/alien6.png">
-            <span class="text" id="eleven">F</span>
-        </div>
-        <div class="card" id="card12">
-            <img class ="image" src="images/alien6.png">
-            <span class="text" id="twelve">F</span>
-        </div>
-    </section>
-
-    -->
+    <div class='buttons'>
+    <button id='button'>Reset</button>
+    <button id='duplicate'>Increase Difficulty</button>
+    </div>
+    </header>
 
 
     <section class="container">
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
-        <div class="card">
-            <div class="image"></div>
-        </div>
         
-    </section>
+        <div class="first card" data-name="alien1">
+          <img class="frontImage" src="images/alien1.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="first card" data-name="alien1">
+          <img class="frontImage" src="images/alien1.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+        <div class="first card" data-name="alien2">
+          <img class="frontImage" src="images/alien2.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="first card" data-name="alien2">
+          <img class="frontImage" src="images/alien2.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+        <div class="first card" data-name="alien3">
+          <img class="frontImage" src="images/alien3.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="first card" data-name="alien3">
+          <img class="frontImage" src="images/alien3.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+        <div class="first card" data-name="alien4">
+          <img class="frontImage" src="images/alien4.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="first card" data-name="alien4">
+          <img class="frontImage" src="images/alien4.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+        <div class="first card" data-name="alien5">
+          <img class="frontImage" src="images/alien5.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="first card" data-name="alien5">
+          <img class="frontImage" src="images/alien5.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+        <div class="first card" data-name="alien6">
+          <img class="frontImage" src="images/alien6.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="first card" data-name="alien6">
+          <img class="frontImage" src="images/alien6.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+      </section>
+
+
+      <section class="container2" id="containerTwo">
+        
+        <div class="card" data-name="alien7">
+          <img class="frontImage" src="images/alien7.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="card" data-name="alien7">
+          <img class="frontImage" src="images/alien7.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+        <div class="card" data-name="alien8">
+          <img class="frontImage" src="images/alien8.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="card" data-name="alien8">
+          <img class="frontImage" src="images/alien8.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+        <div class="card" data-name="alien9">
+          <img class="frontImage" src="images/alien9.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="card" data-name="alien9">
+          <img class="frontImage" src="images/alien9.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+        <div class="card" data-name="alien10">
+          <img class="frontImage" src="images/alien10.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="card" data-name="alien10">
+          <img class="frontImage" src="images/alien10.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+        <div class="card" data-name="alien11">
+          <img class="frontImage" src="images/alien11.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="card" data-name="alien11">
+          <img class="frontImage" src="images/alien11.png"  />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+        <div class="card" data-name="alien12">
+          <img class="frontImage" src="images/alien12.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+        <div class="card" data-name="alien12">
+          <img class="frontImage" src="images/alien12.png" />
+          <img class="backImage" src="images/spacecard.jpeg"/>
+        </div>
+    
+      </section>
 
 
 
 </body>
 
 </html>
+
