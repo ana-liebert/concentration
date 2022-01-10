@@ -1,5 +1,8 @@
 # Concentration
 
+## Technologies used 
+* HTML, CSS, Javascript
+
 ## Gameplay
 
 * The game starts with 12 blank cards on the screen, which contain 6 matches of various items- color, or shape, or symbol 
@@ -9,3 +12,10 @@
 * Once they've found a match, the card items will not disappear. When all matches have been found, all cards in the deck will show their item
 * A timer will show the user's time, and a counter will show how many clicks it took them to match the cards. The user can shuffle the cards to play again and try to beat their score
 
+## Live link 
+* https://pages.git.generalassemb.ly/analiebert/concentrationGame/
+
+
+## Next Steps
+* Enable more levels and resolve any bugs caused
+* Have a score remain on screen to beat
