@@ -10,22 +10,15 @@ let container = document.querySelector('.container');
 let container2 = document.querySelector('.container2');
 let $button = $('#duplicate');
 let button = document.getElementById('#duplicate');
-let $levelNumber = $('#level').text();
 let $levelMessage = $('#level');
-
-
-console.log($levelNumber);
-console.log($levelNumber.includes('level'));
-console.log($levelNumber.includes('2'));
-
 let $nextLevel = $('.container2');
-$nextLevel.hide();
 
+
+$nextLevel.hide();
+$('.timerContainer').hide();
 
 
 // Shuffles cards ------->
-
-$('.timerContainer').hide();
 
 
 
@@ -73,16 +66,19 @@ function displayImage() {
             if (isMatch == 6) {
                     window.clearInterval(interval);
                     $('.timerContainer').slideDown();
+                    document.getElementById("clicksToWin").innerHTML = "clicks to beat level one."
+                    document.getElementById("containerTwo").style.marginTop = "309px";
                     sumClicks = sumArray.slice(-1)
                     $('#clickTally').append(totalClicks); 
                 }
 
                 if (isMatch == 12) {
-                alert('level 2 complete');
+                
                 window.clearInterval(interval);
-                    $('.timerContainer').slideDown();
+                document.getElementById("clicksToWin").innerHTML = "clicks to beat level two."
                     sumClicks = sumArray.slice(-1)
-                    $('#clickTally').append(totalClicks); 
+                    $('#clickTally').text(totalClicks); 
+                    
             }
             } else{
             setTimeout(() => {
@@ -96,7 +92,7 @@ function displayImage() {
 cards.forEach(card => card.addEventListener('click', displayImage));
 
 
-
+// Level up --------------->
 
 $button.on('click', duplicate);
 
@@ -119,7 +115,4 @@ function duplicate() {
 }
 
 
-
-//LEVEL UP 
-//things im doing- adding different class list to all second container, duplicating the click event for those cards, then creating a new function looking for 12 matches
 
