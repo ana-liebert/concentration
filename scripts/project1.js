@@ -66,7 +66,7 @@ function displayImage() {
             if (isMatch == 6) {
                     window.clearInterval(interval);
                     $('.timerContainer').slideDown();
-                    document.getElementById("clicksToWin").innerHTML = "clicks to beat level one."
+                    document.getElementById("clicksToWin").innerHTML = "clicks to win."
                     document.getElementById("containerTwo").style.marginTop = "309px";
                     sumClicks = sumArray.slice(-1)
                     $('#clickTally').append(totalClicks); 
@@ -80,7 +80,8 @@ function displayImage() {
                     $('#clickTally').text(totalClicks); 
                     
             }
-            } else{
+            } 
+            else{
             setTimeout(() => {
                 choiceOne.classList.remove('flip');
                 choiceTwo.classList.remove('flip');
