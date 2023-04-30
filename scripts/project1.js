@@ -8,33 +8,29 @@ let totalClicks = 0;
 let sumArray = [];
 let container = document.querySelector('.container');
 let container2 = document.querySelector('.container2');
-let $button = $('#duplicate');
-let button = document.getElementById('#duplicate');
-let $levelMessage = $('#level');
-let $nextLevel = $('.container2');
-
-
-$nextLevel.hide();
-$('.timerContainer').hide();
+let timerContainer = document.querySelector('.timerContainer');
+let time = document.getElementById('timer');
+let button = document.getElementById('button');
 
 
 // Shuffles cards ------->
-
-
-
 for (let i = 0; i <= 12; i++) {
     container.appendChild(container.children[Math.floor(Math.random() * i)]);
 }
 
 // Reset button --------->
-$(document).on('click', '#button', function() {
-    window.location.reload(true);
-  })
+button.addEventListener('click', function () {
+    location.reload();
+});
+
+// Hide timer
+timerContainer.style.display = 'none';
+
 
 // Timer ------------>
 function timer() {
-    seconds ++;
-    $('#timer').text(`${seconds}`);
+    seconds++;
+    time.innerHTML = (`${seconds}`)
 }
 
 interval = window.setInterval(timer, 1000);
@@ -42,46 +38,32 @@ interval = window.setInterval(timer, 1000);
 // Show images and check for match ------->
 function displayImage() {
 
-  this.classList.add('flip');
-  totalClicks ++
-  
-  
+    this.classList.add('flip');
+    totalClicks++
+
     if (countClicks == 0) {
         countClicks = 1
         choiceOne = this;
-  } 
+    }
     else {
-      countClicks = 0
-      choiceTwo = this;
-    
-         
-    
+        countClicks = 0
+        choiceTwo = this;
+
         if (choiceOne.dataset.name == choiceTwo.dataset.name && choiceOne !== choiceTwo) {
-            isMatch ++
+            isMatch++
             sumArray.push(totalClicks);
             choiceOne.removeEventListener('click', displayImage, false);
-            choiceOne.removeEventListener('click', displayImage, false);
-           
+            choiceTwo.removeEventListener('click', displayImage, false);
+
 
             if (isMatch == 6) {
-                    window.clearInterval(interval);
-                    $('.timerContainer').slideDown();
-                    document.getElementById("clicksToWin").innerHTML = "clicks to win."
-                    document.getElementById("containerTwo").style.marginTop = "309px";
-                    sumClicks = sumArray.slice(-1)
-                    $('#clickTally').append(totalClicks); 
-                }
-
-                if (isMatch == 12) {
-                
                 window.clearInterval(interval);
-                document.getElementById("clicksToWin").innerHTML = "clicks to beat level two."
-                    sumClicks = sumArray.slice(-1)
-                    $('#clickTally').text(totalClicks); 
-                    
+                timerContainer.style.display = 'block';
+                document.getElementById("clicksToWin").innerHTML = "clicks to win."
+                document.getElementById("clickTally").textContent = totalClicks
             }
-            } 
-            else{
+        }
+        else {
             setTimeout(() => {
                 choiceOne.classList.remove('flip');
                 choiceTwo.classList.remove('flip');
@@ -91,29 +73,4 @@ function displayImage() {
 }
 
 cards.forEach(card => card.addEventListener('click', displayImage));
-
-
-// Level up --------------->
-
-$button.on('click', duplicate);
-
-
-function duplicate() {
-    
-    $nextLevel.show();
-    $levelMessage.text('Level 2');
-    container.classList.add('levelUp');
-    container2.classList.add('levelUp');
-    
-
-    for (let i = 0; i <= 12; i++) {
-
-                container.appendChild(container2.children[Math.floor(Math.random() * i)]);
-                container2.appendChild(container.children[Math.floor(Math.random() * i)]);
-    }
-
-
-}
-
-
 
